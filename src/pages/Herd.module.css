@@ -1,0 +1,82 @@
+.herdPage {
+    background-color: rgb(151, 160, 166);
+}
+
+.headerImg {
+    background-image: url('../img/cows.JPG');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-width: 100vw;
+    min-height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.headerFont {
+    font-size: 3rem;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+}
+
+.cowCard {
+    margin-top: 2rem;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.cowInfoOne {
+    border: thin solid black;
+    padding: 1rem;
+    grid-column: 1/4;
+    display: flex;
+    justify-content: space-around;
+}
+
+.cowInfoTwo {
+    padding: 0.5rem;
+    border: thin solid black;
+    width: 15rem;
+
+}
+
+.cowImg {
+    width: 10rem;
+    height: 15rem;
+    background-image: url('../img/noImageAvailable.png');
+    background-color: whitesmoke;
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.buttonContainer {
+    min-width: 100vw;
+    grid-column: 1 / 4;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.button {
+    width: 15rem;
+    height: 3rem;
+    border-radius: 15px;
+    background-color: cornflowerblue;
+    font-size: large;
+}
+
+.searchContainer {
+    min-width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.searchContainer>input {
+    min-width: 20rem;
+    min-height: 3rem;
+    border-radius: 15px;
+}

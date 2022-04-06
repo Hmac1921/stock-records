@@ -1,0 +1,45 @@
+.headerImg {
+    background-image: url('../img/cows.JPG');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-width: 100vw;
+    min-height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.movementCard {
+    padding-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.headerFont {
+    font-size: 3rem;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+}
+
+.button {
+    width: 15rem;
+    height: 3rem;
+    border-radius: 15px;
+    background-color: cornflowerblue;
+    font-size: large;
+}
+
+.input {
+    width: 20rem;
+    height: 3rem;
+    border-radius: 15px;
+}
+
+.inputHolder {
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

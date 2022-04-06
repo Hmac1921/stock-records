@@ -1,0 +1,58 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.headerImg {
+    background-image: url('../img/cows.JPG');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-width: 100vw;
+    min-height: 20rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.headerFont {
+    font-size: 3rem;
+    color: white;
+    text-shadow: 2px 2px 2px black;
+}
+
+.form {
+    min-width: 30rem;
+    min-height: 40rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding-top: 2rem;
+}
+
+.buttonAddStock {
+
+    grid-column: 1/2;
+    width: 15rem;
+    height: 3rem;
+    border-radius: 15px;
+    background-color: cornflowerblue;
+    font-size: large;
+}
+
+.buttonTester {
+
+    grid-column: 2/3;
+    width: 15rem;
+    height: 3rem;
+    border-radius: 15px;
+    background-color: cornflowerblue;
+    font-size: large;
+}
+
+.standardInput {
+    width: 20rem;
+    height: 3rem;
+    border-radius: 15px;
+}
