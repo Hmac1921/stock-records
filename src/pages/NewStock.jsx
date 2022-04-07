@@ -5,7 +5,7 @@ import { getHerd, newStock } from "../actions/cowActions"
 
 export default function NewStock() {
     const dispatch = useDispatch()
-
+    // local state so data is sent in write object format
     const [addcow, setAddCow] = useState({
         id: 0,
         tag: "",
@@ -42,7 +42,7 @@ export default function NewStock() {
         description: "",
         notes: ""
     })
-
+    // gets all user input and updates the state
     function saveData(category, newVal) {
         if (category === 'id') {
             let holderList = { ...addcow }
@@ -103,9 +103,8 @@ export default function NewStock() {
 
     }
 
-
+    //adds new cow redux store and is also posted to api (sent as a whole object to both)
     function addStock() {
-
         dispatch(newStock(addcow))
         fetch('http://localhost:5001/api_post', {
             method: 'POST',
@@ -116,7 +115,6 @@ export default function NewStock() {
         })
             .then(response => response.json())
             .then(data => dispatch(getHerd(data)));
-
     }
 
 

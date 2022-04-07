@@ -9,7 +9,9 @@ export default function BirthsAndDeaths() {
     //getting right cow from herd page
     const location = useLocation()
     const cows = location.state
+    //setting up dispatch
     const dispatch = useDispatch()
+    //local state so data can be sent as one object and so user can see changes on screen
     const [offspringState, setOffspringState] = useState({
         id: '',
         tag: '',
@@ -18,6 +20,7 @@ export default function BirthsAndDeaths() {
         DoB: ''
     })
 
+    // updates data to local state
     function updateData(idNo, value) {
         if (idNo === "calfId") {
             let holder = { ...offspringState }
@@ -45,10 +48,13 @@ export default function BirthsAndDeaths() {
             setOffspringState(holder)
 
         }
+
     }
+
+    //handles dispatch and alerts user
     function addOffspring() {
-        cows.offspring.unshift(offspringState)
         dispatch(addCalf(cows.id, offspringState))
+        alert('calf added')
     }
 
 
@@ -64,6 +70,15 @@ export default function BirthsAndDeaths() {
                     <h2>Breed: {cows.breed} </h2>
                     <h2>Date of Birth: {cows.DoB}</h2>
                 </div>
+                <div className={style.cowInfoTwo}>
+                    <h2>Offspring: </h2>
+                    <h2>Offspring id: {offspringState.id}</h2>
+                    <h2>Offspring tag: {offspringState.tag}</h2>
+                    <h2>Offspring breed: {offspringState.breed}</h2>
+                    <h2>Offspring sex: {offspringState.sex}</h2>
+                    <h2>Offspring date of birth: {offspringState.DoB}</h2>
+
+                </div>
                 {
                     cows.offspring.map((calf, i) => (
                         <div key={i} className={style.cowInfoTwo}>
@@ -73,13 +88,9 @@ export default function BirthsAndDeaths() {
                             <h2>Offspring breed: {calf.breed}</h2>
                             <h2>Offspring sex: {calf.sex}</h2>
                             <h2>Offspring date of birth: {calf.DoB}</h2>
-                            <input className={style.button} type="button" value="Create full record" />
-
                         </div>
                     ))
-
                 }
-
             </article>
             <article>
                 <form className={style.form}>
@@ -106,3 +117,9 @@ export default function BirthsAndDeaths() {
     )
 }
 
+/* 
+add later, will create a full adult record for the calf
+
+  <input className={style.button} type="button" value="Create full record" />
+<input className={style.button} type="button" value="Create full record" />
+*/

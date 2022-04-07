@@ -176,10 +176,3 @@ export default function HerdDetails(props) {
     }
 }
 
-
-/*  
-  {
-                                    herd.medicine.map((meds, i) => ())
-                                }
-
-*/

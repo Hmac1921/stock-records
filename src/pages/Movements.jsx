@@ -4,15 +4,15 @@ import { newLocationNo } from '../actions/cowActions'
 import styles from '../pages/Movements.module.css'
 
 export default function Movements() {
-
+    // getting data from location and setting up dispatch
     const location = useLocation()
     const herd = location.state
     const dispatch = useDispatch()
-
+    //only saving two bits of info here so saved as variables
     let newLocationNum = ''
     let newAddressHere = ''
 
-
+    // gets user inputs and saves to variables
     function getDetails(id, event) {
         if (id === 'locationNumber') {
             herd.movements.newLocation = event
@@ -23,7 +23,7 @@ export default function Movements() {
             newAddressHere = event
         }
     }
-
+    //sends data to reducer and updates infor on screen
     function moveCow() {
         dispatch(newLocationNo(herd.id, newLocationNum, newAddressHere))
         document.querySelector('.updateNo').innerText = 'New location No: ' + herd.movements.newLocation
@@ -72,19 +72,3 @@ export default function Movements() {
     )
 }
 
-/*  <div >
-            Medicine:
-            <p>Medicine given: {herd.medicine.nameOfMedicine}</p>
-            <p>Start of Treatment: {herd.medicine.startOfTreatment} </p>
-            <p>End of Treatment: {herd.medicine.endOfTreatment} </p>
-            <p>Amount Given in mls: {herd.medicine.amountGivenInMls}</p>
-            <p>Medicine batch: {herd.medicine.batchNo}</p>
-        </div>
-        <div>
-            Offspring:
-            <p>id: {herd.offspring.id}</p>
-            <p>tag: {herd.offspring.tag}</p>
-            <p>breed: {herd.offspring.breed}</p>
-            <p>sex: {herd.offspring.sex}</p>
-            <p>Date Calved: {herd.offspring.DoB}</p>
-        </div>*/

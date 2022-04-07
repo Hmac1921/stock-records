@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux"
 import { giveMedicine } from "../actions/cowActions"
 import { updateMedicine } from "../actions/medicineActions"
 import style from '../pages/Medicine.module.css'
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { Link } from 'react-router-dom'
 
 export default function Medicine() {
@@ -61,8 +61,6 @@ export default function Medicine() {
 
     // function that handles dispatch to update redux
     function addMedicine() {
-
-        cows.medicine.unshift(medicineState)
         dispatch(giveMedicine(cows.id, medicineState))
         dispatch(updateMedicine(medicineState.amountGivenInMls, medicineState.batchNo))
     }
