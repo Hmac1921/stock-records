@@ -4,16 +4,17 @@ import { useDispatch } from "react-redux"
 import { giveMedicine } from "../actions/cowActions"
 import { updateMedicine } from "../actions/medicineActions"
 import style from '../pages/Medicine.module.css'
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { Link } from 'react-router-dom'
 
 export default function Medicine() {
     // state to hold all medicine input updates
     const [medicineState, setMedicineState] = useState({
-        medicineGiven: '',
+        nameOfMedicine: '',
         startOfTreatment: '',
         endOfTreatment: '',
-        amountGiven: '',
-        batchNumber: ''
+        amountGivenInMls: '',
+        batchNo: ''
     })
     // state to keep track of total medicine avaiable
     const [total, setTotal] = useState(0)
@@ -30,7 +31,7 @@ export default function Medicine() {
     function updateData(id, value) {
         if (id === "medicineGiven") {
             let holder = { ...medicineState }
-            holder.medicineGiven = value
+            holder.nameOfMedicine = value
             setMedicineState(holder)
             cows.medicine.nameOfMedicine = value
         } if (id === "startOfTreatment") {
@@ -45,14 +46,14 @@ export default function Medicine() {
             cows.medicine.endOfTreatment = value
         } if (id === "amountGiven") {
             let holder = { ...medicineState }
-            holder.amountGiven = value
+            holder.amountGivenInMls = value
             setMedicineState(holder)
             cows.medicine.amountGivenInMls = value
             let convert = parseInt(cows.medicine.amountGivenInMls)
             setTotal(+ convert)
         } if (id === "medicineBatch") {
             let holder = { ...medicineState }
-            holder.batchNumber = value
+            holder.batchNo = value
             setMedicineState(holder)
             cows.medicine.batchNo = value
         }
@@ -60,15 +61,17 @@ export default function Medicine() {
 
     // function that handles dispatch to update redux
     function addMedicine() {
-        // dispatch(giveMedicine(cows.id, medicineState.medicineGiven, medicineState.startOfTreatment, medicineState.endOfTreatment, medicineState.amountGiven, medicineState.batchNumber))
+
+        cows.medicine.unshift(medicineState)
         dispatch(giveMedicine(cows.id, medicineState))
-        dispatch(updateMedicine(medicineState.amountGiven, medicineState.batchNumber))
+        dispatch(updateMedicine(medicineState.amountGivenInMls, medicineState.batchNo))
     }
 
 
     return (
         <section>
             <div className={style.headerImg}><h1 className={style.headerFont}>- Medicine -</h1></div>
+            <Link to={'/'}><input className={style.button} type="button" value="Back to the Start" /></Link>
             <section className={style.mainContainer}>
                 <article className={style.cowInfo}>
                     <div>

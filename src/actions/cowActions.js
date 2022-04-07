@@ -5,10 +5,10 @@ const getHerd = (payload) => {
     }
 }
 
-const newStock = () => {
+const newStock = (payload) => {
     return {
         type: 'ADD_STOCK',
-        payload: {}
+        payload: payload
     }
 }
 
@@ -22,18 +22,6 @@ const newLocationNo = (id, location, address) => {
     }
 }
 
-/*const giveMedicine = (medTo, medName, start, end, amount, batch) => {
-    return {
-        type: 'GIVE_MEDICINE',
-        medTo: medTo,
-        medName: medName,
-        start: start,
-        end: end,
-        amount: amount,
-        batch: batch
-    }
-
-}*/
 
 const giveMedicine = (medTo, medUpdate) => {
     return {
@@ -41,31 +29,19 @@ const giveMedicine = (medTo, medUpdate) => {
         medTo: medTo,
         medUpdate: medUpdate
     }
-
 }
 
+const addCalf = (mother, calf) => {
+    return {
+        type: 'ADD_CALF',
+        mother: mother,
+        calf: calf
+    }
+}
 export {
     getHerd,
     newStock,
     newLocationNo,
-    giveMedicine
+    giveMedicine,
+    addCalf
 }
-
-/* 
- medicine: {
-                startOfTreatment: "",
-                endOfTreatment: "",
-                nameOfMedicine: "",
-                amountGivenInMls: 0,
-                batchNo: "",
-                hadMedicine: false
-            },
-            offspring: {
-                id: 0,
-                tag: "",
-                breed: "",
-                sex: "",
-                DoB: "",
-                hasOffspring: false
-            },
-*/

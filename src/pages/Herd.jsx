@@ -1,5 +1,4 @@
 import { useSelector } from "react-redux"
-
 import HerdDetails from "../Components/HerdDetails"
 import style from "../pages/Herd.module.css"
 
@@ -7,7 +6,6 @@ import style from "../pages/Herd.module.css"
 
 export default function Herd() {
     const cows = useSelector(state => state.cows.cows)
-
 
     return (
         <section className={style.herdPage}>

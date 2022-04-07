@@ -50,6 +50,7 @@ export default function HerdDetails(props) {
         return (
             <section>
                 <section className={style.searchContainer}>
+                    <Link to={'/'}><input className={style.button} type="button" value="Back to the Start" /></Link>
                     <input type="text" placeholder="search" onChange={(e) => getSearch(e)} />
                 </section>
                 <div>
@@ -78,22 +79,24 @@ export default function HerdDetails(props) {
                                     <p> Current location No. - {herd.movements.currentLocation}</p>
                                     <p>  Current location Address - {herd.movements.currentAddress}</p>
                                 </div>
+
                                 <div className={style.cowInfoTwo}>
                                     Medicine:
-                                    <p>Medicine given: {herd.medicine.nameOfMedicine}</p>
-                                    <p>Start of Treatment: {herd.medicine.startOfTreatment} </p>
-                                    <p>End of Treatment: {herd.medicine.endOfTreatment} </p>
-                                    <p>Amount Given in mls: {herd.medicine.amountGivenInMls}</p>
-                                    <p>Medicine batch: {herd.medicine.batchNo}</p>
+                                    <p>Medicine given: {herd.medicine[0].nameOfMedicine}</p>
+                                    <p>Start of Treatment: {herd.medicine[0].startOfTreatment} </p>
+                                    <p>End of Treatment: {herd.medicine[0].endOfTreatment} </p>
+                                    <p>Amount Given in mls: {herd.medicine[0].amountGivenInMls}</p>
+                                    <p>Medicine batch: {herd.medicine[0].batchNo}</p>
                                 </div>
                                 <div className={style.cowInfoTwo}>
                                     Offspring:
-                                    <p>id: {herd.offspring.id}</p>
-                                    <p>tag: {herd.offspring.tag}</p>
-                                    <p>breed: {herd.offspring.breed}</p>
-                                    <p>sex: {herd.offspring.sex}</p>
-                                    <p>Date Calved: {herd.offspring.DoB}</p>
+                                    <p>id: {herd.offspring[0].id}</p>
+                                    <p>tag: {herd.offspring[0].tag}</p>
+                                    <p>breed: {herd.offspring[0].breed}</p>
+                                    <p>sex: {herd.offspring[0].sex}</p>
+                                    <p>Date Calved: {herd.offspring[0].DoB}</p>
                                 </div>
+
                                 <div className={style.buttonContainer}>
                                     <Link to={'/movements'} state={herd}> <input className={style.button} type="button" value="Update a Movement" /> </Link>
                                     <Link to={'/medicine'} state={herd}>  <input className={style.button} type="button" value="Update Medicine Record" /></Link>
@@ -141,21 +144,22 @@ export default function HerdDetails(props) {
                                     <p> New location No. - {herd.movements.newLocation}</p>
                                     <p> New location Address - {herd.movements.newAddress}</p>
                                 </div>
+
                                 <div className={style.cowInfoTwo}>
                                     Medicine:
-                                    <p>Medicine given: {herd.medicine.nameOfMedicine}</p>
-                                    <p>Start of Treatment: {herd.medicine.startOfTreatment} </p>
-                                    <p>End of Treatment: {herd.medicine.endOfTreatment} </p>
-                                    <p>Amount Given in mls: {herd.medicine.amountGivenInMls}</p>
-                                    <p>Medicine batch: {herd.medicine.batchNo}</p>
+                                    <p>Medicine given: {herd.medicine[0].nameOfMedicine}</p>
+                                    <p>Start of Treatment: {herd.medicine[0].startOfTreatment} </p>
+                                    <p>End of Treatment: {herd.medicine[0].endOfTreatment} </p>
+                                    <p>Amount Given in mls: {herd.medicine[0].amountGivenInMls}</p>
+                                    <p>Medicine batch: {herd.medicine[0].batchNo}</p>
                                 </div>
-                                <div className={style.cowInfoTwo}>
+                                <div key={i} className={style.cowInfoTwo}>
                                     Offspring:
-                                    <p>id: {herd.offspring.id}</p>
-                                    <p>tag: {herd.offspring.tag}</p>
-                                    <p>breed: {herd.offspring.breed}</p>
-                                    <p>sex: {herd.offspring.sex}</p>
-                                    <p>Date Calved: {herd.offspring.DoB}</p>
+                                    <p>id:{herd.offspring[0].id}</p>
+                                    <p>tag: {herd.offspring[0].tag}</p>
+                                    <p>breed: {herd.offspring[0].breed}</p>
+                                    <p>sex: {herd.offspring[0].sex}</p>
+                                    <p>Date Calved: {herd.offspring[0].DoB}</p>
                                 </div>
                                 <div className={style.buttonContainer}>
                                     <Link to={'/movements'} state={herd}> <input className={style.button} type="button" value="Update a Movement" /> </Link>
@@ -171,3 +175,11 @@ export default function HerdDetails(props) {
         )
     }
 }
+
+
+/*  
+  {
+                                    herd.medicine.map((meds, i) => ())
+                                }
+
+*/

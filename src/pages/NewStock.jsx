@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 import styles from '../pages/NewStock.module.css'
-import { getHerd } from "../actions/cowActions"
+import { getHerd, newStock } from "../actions/cowActions"
 
 export default function NewStock() {
     const dispatch = useDispatch()
@@ -23,22 +23,22 @@ export default function NewStock() {
             newAddress: "",
             onFarm: false
         },
-        medicine: {
+        medicine: [{
             startOfTreatment: "",
             endOfTreatment: "",
             nameOfMedicine: "",
             amountGivenInMls: 0,
             batchNo: "",
             hadMedicine: false
-        },
-        offspring: {
+        }],
+        offspring: [{
             id: 0,
             tag: "",
             breed: "",
             sex: "",
             DoB: "",
             hasOffspring: false
-        },
+        }],
         description: "",
         notes: ""
     })
@@ -81,29 +81,32 @@ export default function NewStock() {
         }
         if (category === 'prevLocation') {
             let holderList = { ...addcow }
-            holderList.prevLocation = newVal
+            holderList.movements.prevLocation = newVal
             setAddCow(holderList)
         }
         if (category === 'prevAddress') {
             let holderList = { ...addcow }
-            holderList.prevAddress = newVal
+            holderList.movements.prevAddress = newVal
             setAddCow(holderList)
         }
         if (category === 'currentLocation') {
             let holderList = { ...addcow }
-            holderList.currentLocation = newVal
+            holderList.movements.currentLocation = newVal
             setAddCow(holderList)
         }
         if (category === 'currentAddress') {
             let holderList = { ...addcow }
-            holderList.currentAddress = newVal
+            holderList.movements.currentAddress = newVal
+            holderList.movements.onFarm = true
             setAddCow(holderList)
         }
 
     }
 
-    function postTest() {
 
+    function addStock() {
+
+        dispatch(newStock(addcow))
         fetch('http://localhost:5001/api_post', {
             method: 'POST',
             headers: {
@@ -113,15 +116,9 @@ export default function NewStock() {
         })
             .then(response => response.json())
             .then(data => dispatch(getHerd(data)));
+
     }
 
-
-    function addStock() {
-        dispatch({ type: "ADD_STOCK", payload: addcow })
-        dispatch({ type: "UPDATE_API", payload: addcow })
-    }
-    let updatedCows = useSelector(state => state.payload)
-    console.log(updatedCows);
 
     return (
         <article className={styles.container}>
@@ -163,7 +160,7 @@ export default function NewStock() {
 
 
                 <input className={styles.buttonAddStock} type="button" value="Add Stock" onClick={addStock} />
-                <input className={styles.buttonTester} type="button" value="tester" onClick={postTest} />
+
 
             </form>
         </article>

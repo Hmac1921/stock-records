@@ -34,7 +34,7 @@ const cowReducer = (state = initialState, action) => {
                     case "GIVE_MEDICINE":
                         let getCow = state.cows.filter((e) => e.id === action.medTo)
                         let idNo = state.cows.findIndex((cow) => cow.id === action.medTo)
-                        getCow[0].medicine.push(action.medUpdate)
+                        getCow[0].medicine.unshift(action.medUpdate)
                         getCow[0].medicine.hadMedicine = true
                         let getCowCopy = {
                             ...state
@@ -45,62 +45,25 @@ const cowReducer = (state = initialState, action) => {
                             ...state,
                             cows: getCowCopy.cows
                         }
+                        case "ADD_CALF":
+                            let mother = state.cows.filter((e) => e.id === action.mother)
+                            let motherIndex = state.cows.findIndex((cow) => cow.id === action.mother)
+                            mother[0].offspring.unshift(action.calf)
+                            mother[0].offspring.hasOffspring = true
+                            let motherCopy = {
+                                ...state
+                            }
+                            motherCopy.cows.splice(motherIndex, 1, mother[0])
 
-                        default:
-                            return state
+                            return {
+                                ...state,
+                                cows: motherCopy.cows
+                            }
+
+                            default:
+                                return state
     }
 
 }
 
 export default cowReducer
-
-
-/*
-  case "ADD_ICECREAM":
-    return Object.assign({}, state, {
-        ...state,
-        [action.order]: state[action.order] + action.payload
-    })
-
-case "UPDATE_API":
-    return {
-        ...state,
-      app.post()
-    }*/
-
-/* 
- [state.id]: action.payload.id,
-                    [state.tag]: action.payload.tag,
-                    [state.breed]: action.payload.breed,
-                    [state.sex]: action.payload.sex,
-                    [state.DoB]: action.payload.DoB,
-                    [state.dam]: action.payload.dam,
-                    [state.sire]: action.payload.sire,
-                    [state.movements]: {
-                        [state.prevLocation]: action.payload.movements.prevLocation,
-                        [state.prevAddress]: action.payload.movements.prevAddress,
-                        [state.currentLocation]: action.payload.movements.currentLocation,
-                        [state.currentAddress]: action.payload.movements.currentAddress,
-                        [state.newLocations]: 0,
-                        [state.newAddress]: "",
-                        [state.onFarm]: true
-                    },
-                    [state.medicine]: {
-                        [state.startOfTreatment]: "",
-                        [state.endOfTreatment]: "",
-                        [state.nameOfMedicine]: "",
-                        [state.amountGivenInMls]: 0,
-                        [state.batchNo]: "",
-                        [state.hadMedicine]: false
-                    },
-                    [state.offspring]: {
-                        [state.id]: 0,
-                        [state.tag]: "",
-                        [state.breed]: "",
-                        [state.sex]: "",
-                        [state.DoB]: "",
-                        [state.hasOffspring]: false
-                    },
-                    [state.description]: "",
-                    [state.notes]: ""
-*/
